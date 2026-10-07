@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Câu lạc bộ Kỹ Năng Nguyễn Thái Bình</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+
+
+
+/* ===== MÀU SẮC & KIỂU CHỮ: đỏ ấm, cam, kem, trắng; có chế độ tối ===== */
+:root{--red:#d62b1f;--red2:#b01e14;--org:#ff8a1f;--cream:#fff4e0;--bg:#fffaf0;--card:#fff;--ink:#3a1a12;--mut:#7d5a50;--line:#f1d9c0;--ok:#1d8a4b;--shadow:0 2px 0 #f1d9c0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241310;--card:#33201b;--cream:#40251d;--ink:#fbeadb;--mut:#d0aa98;--line:#5a392e;--red:#ff5a45;--red2:#ff7a68;--shadow:0 2px 0 #5a392e}}
+:root[data-theme="dark"]{--bg:#241310;--card:#33201b;--cream:#40251d;--ink:#fbeadb;--mut:#d0aa98;--line:#5a392e;--red:#ff5a45;--red2:#ff7a68;--shadow:0 2px 0 #5a392e}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3,.brand b{font-family:"Baloo 2","Segoe UI",system-ui,sans-serif;margin:0;line-height:1.15}
+header{background:linear-gradient(135deg,var(--red),#f0561f 70%,var(--org));color:#fff;padding:12px 16px 0}
+.top{max-width:1100px;margin:auto;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand svg{width:46px;height:46px;flex:none}
+.brand b{font-size:1.25rem;display:block}
+.brand span{font-size:.85rem;opacity:.95}
+nav{max-width:1100px;margin:10px auto 0;display:flex;gap:4px;overflow-x:auto}
+nav button{background:transparent;border:0;color:#fff;font:700 .95rem "Baloo 2",sans-serif;padding:10px 14px;border-radius:12px 12px 0 0;cursor:pointer;white-space:nowrap}
+nav button[aria-current=page]{background:var(--bg);color:var(--red)}
+nav button:not([aria-current=page]):hover{background:rgba(255,255,255,.2)}
+main{max-width:1100px;margin:auto;padding:16px}
+.demo{background:var(--cream);border:2px dashed var(--org);border-radius:12px;padding:8px 12px;font-size:.88rem;margin-bottom:12px}
+.hint{display:flex;gap:10px;align-items:center;justify-content:space-between;background:#fff1c9;color:#4a2a00;border-radius:12px;padding:10px 14px;margin-bottom:14px}
+
+
+
+/* ===== NÚT BẤM ===== */
+.btn{font:700 .95rem "Baloo 2",sans-serif;border:0;border-radius:999px;padding:8px 18px;cursor:pointer;background:var(--red);color:#fff;box-shadow:0 3px 0 var(--red2)}
+.btn.alt{background:var(--org);color:#3a1a12;box-shadow:0 3px 0 #c9660a}
+.btn.ghost{background:var(--card);color:var(--ink);box-shadow:0 3px 0 var(--line);border:1px solid var(--line)}
+.btn.danger{background:#9b1c1c}
+.btn:active{transform:translateY(2px)}
+:focus-visible{outline:3px solid var(--org);outline-offset:2px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.stats{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+
+
+/* ===== THẺ & LƯỚI (dùng cho mọi trang) ===== */
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow);position:relative}
+.stat b{font:800 2.2rem "Baloo 2",sans-serif;color:var(--red);display:block;line-height:1}
+.stat span{color:var(--mut);font-size:.9rem}
+.cols{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:14px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.row .sp{flex:1}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--org);border-radius:10px;padding:6px 10px;max-width:100%}
+.tool input,.tool select{border-color:var(--line)}
+
+
+/* ===== CHỈNH SỬA TRỰC TIẾP: chữ gạch chấm nhấp để sửa; nút thùng rác .del ===== */
+.ed{display:inline-block;min-width:3ch;border-bottom:1.5px dotted var(--org);cursor:text;border-radius:4px;padding:0 2px;word-break:break-word}
+.ed:hover,.ed:focus-visible{background:#ffe3b8;color:#3a1a12;border-bottom-style:solid}
+.ed:hover:after{content:" ✎";font-size:.8em;color:var(--red)}
+.ed.empty{color:var(--mut);font-style:italic}
+.ed input,.ed select,.ed textarea{width:100%;min-width:140px}
+.f{display:flex;gap:6px;font-size:.92rem;padding:2px 0;align-items:baseline}
+.f>i{font-style:normal;color:var(--mut);flex:0 0 96px}
+.ttl{font-size:1.15rem;font-weight:800}
+.del{position:absolute;top:8px;right:8px;border:0;background:#ffe0dc;color:#9b1c1c;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1rem;opacity:0;transition:opacity .15s}
+.card:hover .del,.card:focus-within .del,.del:focus-visible{opacity:1}
+@media (hover:none){.del{opacity:.85}}
+
+
+/* ===== THÀNH VIÊN: ảnh đại diện, thẻ thành viên, thẻ trạng thái ===== */
+.av{width:56px;height:56px;border-radius:50%;background:var(--org);color:#fff;font:800 1.3rem "Baloo 2",sans-serif;display:grid;place-items:center;overflow:hidden;border:3px solid var(--red);cursor:pointer;flex:none;padding:0}
+.av img{width:100%;height:100%;object-fit:cover}
+.mh{display:flex;gap:10px;align-items:center;margin-bottom:6px;padding-right:30px}
+.tag{display:inline-block;border-radius:999px;padding:1px 10px;font-size:.8rem;font-weight:700;background:var(--cream);border:1px solid var(--line)}
+.tag.on{background:#d9f5e3;color:#0f5f31;border-color:#9fdcb8}.tag.off{background:#eee;color:#555}
+.pg{display:flex;gap:6px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.pg button{min-width:38px}
+ul.l{list-style:none;margin:8px 0 0;padding:0}ul.l li{padding:8px 0;border-top:1px dashed var(--line);display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}
+details summary{cursor:pointer;font-weight:700;color:var(--red);margin-top:6px}
+.att label{display:flex;gap:8px;align-items:center;padding:2px 0}
+
+
+/* ===== HỘP THOẠI & THÔNG BÁO (toast) ===== */
+dialog{border:3px solid var(--org);border-radius:18px;background:var(--card);color:var(--ink);max-width:min(440px,92vw);padding:20px}
+dialog::backdrop{background:rgba(58,26,18,.55)}
+dialog .row{justify-content:flex-end}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:9;display:grid;gap:6px;width:max-content;max-width:92vw}
+.t{padding:10px 16px;border-radius:12px;color:#fff;background:var(--ok);font-weight:600}.t.err{background:#b3261e}
+label.fl{display:block;font-size:.9rem;color:var(--mut)}
+.empty-s{text-align:center;color:var(--mut);padding:24px}
+
+
+
+/* ===== ĐĂNG NHẬP & KHUNG CAMERA ===== */
+.tb{width:100%;border-collapse:collapse;font-size:.92rem}
+.tb th,.tb td{
+  padding:6px 8px;
+  border-bottom:1px dashed var(--line);
+  text-align:left;
+  vertical-align:top;
+}
+.tb th{color:var(--mut);font-weight:600;white-space:nowrap}
+
+.tabs{
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  margin:10px 0;
+  padding:0 2px 6px;
+}
+.tabs .btn{white-space:nowrap}
+
+/* Khung đăng nhập căn giữa và tương thích điện thoại, iPad, máy tính */
+body:not(.auth) main{
+  min-height:calc(100vh - 90px);
+  min-height:calc(100dvh - 90px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.login{
+  width:min(100%,420px);
+  margin:auto;
+  display:grid;
+  gap:10px;
+  box-sizing:border-box;
+}
+.login h2{text-align:center}
+.login input{width:100%;min-width:0}
+.login .row{justify-content:center}
+
+@media (max-width:600px){
+  body:not(.auth) main{padding:16px}
+  .login{padding:18px}
+}
+
+/* Nút con mắt hiện/ẩn mật khẩu */
+/* Nút con mắt hiện/ẩn mật khẩu */
+.pw-wrap{display:flex;align-items:center;position:relative}
+.pw-wrap input{padding-right:48px}
+.pw-eye{
+  position:absolute;
+  right:6px;
+  border:0;
+  background:transparent;
+  color:var(--mut);
+  font-size:1.15rem;
+  cursor:pointer;
+  padding:4px 8px;
+  border-radius:8px;
+}
+.pw-eye:hover{background:var(--cream);color:var(--red)}
+
+nav button.out{margin-left:auto;background:rgba(255,255,255,.18)}
+canvas,video{display:block;margin-top:10px}
+
+/* ===== MENU DỌC BÊN TRÁI: mở/đóng, nhóm con (Quản lý thành viên, Báo cáo) ===== */
+nav#nav{position:fixed;top:0;left:0;bottom:0;width:250px;max-width:85vw;z-index:20;display:flex;flex-direction:column;gap:2px;margin:0;padding:calc(12px + env(safe-area-inset-top,0px)) 10px calc(16px + env(safe-area-inset-bottom,0px));background:var(--card);border-right:3px solid var(--org);overflow-x:hidden;overflow-y:auto;transform:translateX(-105%);transition:transform .2s}
+body.sb nav#nav{transform:none}
+nav#nav button{color:var(--ink);text-align:left;border-radius:12px;padding:10px 14px;font-size:1rem;width:100%;white-space:normal}
+nav#nav button[aria-current=page]{background:var(--red);color:#fff}
+nav#nav button:not([aria-current=page]):hover{background:var(--cream)}
+nav#nav button.sub{padding-left:32px;font-weight:500}
+nav#nav button.closeb{background:var(--cream);margin-bottom:8px}
+nav#nav button.out{margin:auto 0 0;background:var(--cream)}
+nav#nav .grp{font:700 .85rem "Baloo 2",sans-serif;color:var(--mut);padding:10px 14px 2px}
+#scrim{display:none;position:fixed;inset:0;background:rgba(58,26,18,.45);z-index:15}
+body.sb.auth #scrim{display:block}
+body:not(.auth) nav#nav,body:not(.auth) #sbt,body:not(.auth) #scrim{display:none}
+@media (min-width:900px){body.sb.auth header,body.sb.auth main{margin-left:250px}body.sb #scrim{display:none}}
+nav#nav button.grpb{display:flex;justify-content:space-between;align-items:center;font-weight:700}
+nav#nav button.grpb.has{color:var(--red)}
+</style>
+</head>
+<body>
+
+
+
+ <!-- ===== THANH ĐẦU TRANG: tên & khẩu hiệu CLB, nút ☰ Menu ===== -->
+<header>
+  <div class="top">
+    <button id="sbt" class="btn ghost" data-sb
+      aria-label="Mở hoặc đóng menu" style="padding:6px 12px">☰ Menu</button>
+    <div class="brand">
+      <div><b id="hName"></b><span id="hSlogan"></span></div>
+    </div>
+  </div>
+  <nav id="nav" aria-label="Điều hướng chính"></nav>
+</header>
+
+
+<!-- ===== NỘI DUNG CHÍNH: mỗi trang (Tổng quan, Thành viên, Blacklist, Báo cáo...) được JavaScript vẽ vào #app ===== -->
+<div id="scrim" data-sb></div><main id="app"></main>
+<!-- ===== HỘP THOẠI DÙNG CHUNG: xác nhận xóa + biểu mẫu tạo mới (thành viên, ban, hoạt động, mẫu) ===== -->
+<dialog id="dlg"><h3 id="dT"></h3><p id="dM"></p><div id="dX"></div><div class="row" id="dB"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<!-- ===== JAVASCRIPT: toàn bộ logic ứng dụng. Xem mục lục ngay bên dưới ===== -->
+<script>
+/* =================== CÁCH ĐỌC FILE ===================
+Các khối lớn được đánh số theo MỤC LỤC bên dưới. Dùng Ctrl+F để tìm tên khối.
+Phần HTML tạo nội dung trang; phần CSS quyết định giao diện; JavaScript xử lý thao tác.
+======================================================= */
+/* =====================  MỤC LỤC  =====================
+ 1. DỮ LIỆU        : lưu trong trình duyệt (localStorage), dữ liệu mẫu (seed)
+ 2. PHÂN QUYỀN/MENU: admin & thành viên, menu dọc có nhóm (navFor)
+ 3. CHỈNH SỬA TRỰC TIẾP & KIỂM TRA DỮ LIỆU (ed, startEdit, validate)
+ 4. HỘP THOẠI      : xác nhận xóa (ask, del) và hộp tạo mới bắt buộc nhập tên (formDlg)
+ 5. QUẢN LÝ THÀNH VIÊN: trang Thành viên (members) + Blacklist (bl) + thẻ thành viên
+ 6. BAN/NHÓM (committees)   7. HOẠT ĐỘNG (acts, điểm danh)
+ 8. BÁO CÁO: Chụp ảnh (cam) + Tạo mẫu / Mẫu (tpl)
+ 9. CÀI ĐẶT (set)   
+ 10. ĐĂNG NHẬP (renderLogin)   
+ 11. VẼ GIAO DIỆN (render)
+ 12. XUẤT FILE: exportMembers() — file CSV danh sách thành viên / Blacklist (mở được bằng Excel)
+======================================================= */
+/* ===== 1. DỮ LIỆU: khóa lưu trữ & tiện ích nhỏ ===== */
+// K là tên khóa dùng để lưu dữ liệu CLB trong localStorage của trình duyệt.
+const K='ntb-club-demo-v1',today=()=>new Date().toISOString().slice(0,10);
+const uid=()=>Math.random().toString(36).slice(2,9);
+const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dd=n=>{const d=new Date();d.setDate(d.getDate()+n);return d.toISOString().slice(0,10)};
+/* ===== 1. DỮ LIỆU MẪU ban đầu (ban, thành viên, hoạt động) — nút "Đặt lại dữ liệu mẫu" dùng lại hàm này ===== */
+// Tạo bộ dữ liệu mẫu ban đầu: c = ban/nhóm, m = thành viên, a = hoạt động.
+function seed(){
+ const c=[{id:'c1',name:'Ban Truyền thông',description:'Thiết kế, đăng bài và quay dựng các hoạt động của CLB.',leader:'Lê Minh Anh'},
+ {id:'c2',name:'Ban Sự kiện',description:'Lên kế hoạch và tổ chức workshop, hội thảo, giao lưu.',leader:'Trần Quốc Bảo'},
+ {id:'c3',name:'Ban Nhân sự',description:'Tuyển thành viên, chăm sóc và kết nối các bạn trong CLB.',leader:'Phạm Thu Hà'}];
+ const n=[['Lê Minh Anh','c1',-200,'active'],['Trần Quốc Bảo','c2',-190,'active'],['Phạm Thu Hà','c3',-180,'active'],['Nguyễn Gia Hân','c1',-60,'active'],['Võ Đức Huy','c2',-40,'inactive'],['Đặng Ngọc Lan','c3',-12,'active'],['Bùi Thanh Tùng','c2',-8,'active'],['Hoàng Bảo Ngọc','c1',-3,'active'],['Mai Tuấn Kiệt','',-1,'active']];
+ const m=n.map((x,i)=>({id:'TV'+String(i+1).padStart(3,'0'),uid:uid(),name:x[0],dob:'2006-0'+(i%9+1)+'-1'+(i%9),email:'tv'+(i+1)+'@example.com',phone:'09012345'+String(10+i),cls:'12A'+(i%4+1),committee:x[1],join:dd(x[2]),pos:i===0?'Chủ nhiệm':i===1?'Phó chủ nhiệm':i===2?'Trưởng ban':'Thành viên',status:x[3],stopDate:x[3]==='inactive'?dd(-10):'',photo:'',ts:i}));
+ const a=[{id:uid(),title:'Workshop Kỹ năng thuyết trình',date:dd(5),time:'14:00',location:'Phòng đa năng A',description:'Luyện nói trước đám đông tự tin hơn.',committee:'c2',status:'upcoming',att:[]},
+ {id:uid(),title:'Chụp ảnh kỷ yếu CLB',date:dd(12),time:'08:30',location:'Sân trường',description:'Chụp ảnh tập thể và chân dung thành viên.',committee:'c1',status:'upcoming',att:[]},
+ {id:uid(),title:'Buổi sinh hoạt chào tân thành viên',date:dd(-7),time:'16:00',location:'Phòng sinh hoạt CLB',description:'Giới thiệu CLB và các ban.',committee:'c3',status:'done',att:[m[0].uid,m[1].uid,m[2].uid]}];
+ seedAct(a,m);return{settings:{name:'Câu lạc bộ Kỹ Năng Nguyễn Thái Bình',slogan:'Năng động – Tự tin – Bền vững',email:'clb.nguyenthaibinh@example.com',pass:'admin123'},committees:c,members:m,activities:a,templates:defaultTpl(),photos:[]};
+}
+// S là toàn bộ dữ liệu ứng dụng. Ưu tiên đọc dữ liệu đã lưu, nếu chưa có thì dùng seed().
+let S=(()=>{try{const s=JSON.parse(localStorage.getItem(K));if(s&&s.members)return s}catch(e){}return seed()})();
+S.templates=S.templates||defaultTpl();S.photos=S.photos||[];S.settings.pass=S.settings.pass||'admin123';S.activities.forEach(norm);S.members.forEach(m=>{m.pos=m.pos||'Thành viên'});S.members.forEach(m=>{if(m.status==='inactive'&&!m.stopDate)m.stopDate=today()});
+// Lưu toàn bộ dữ liệu S vào bộ nhớ trình duyệt trên thiết bị hiện tại.
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S));return true}catch(e){toast('Không lưu được: bộ nhớ trình duyệt đã đầy.',1);return false}};
+/* ===== 2. TRẠNG THÁI: ME = người đang đăng nhập; V = trang đang xem ===== */
+// ME lưu vai trò/người đang đăng nhập; sessionStorage giữ phiên cho tab/trình duyệt hiện tại.
+let ME=(()=>{try{return JSON.parse(sessionStorage.getItem('ntb-me'))}catch(e){return null}})();
+let V={view:(ME&&ME.role==='member')?'me':'dash',q:'',fc:'',fs:'',page:1};const PS=1e9;
+/* ===== 2. PHÂN QUYỀN & MENU DỌC: navFor() liệt kê mục menu theo vai trò; ["_g",...] là tiêu đề nhóm thu/mở ===== */
+const isAd=()=>!!ME&&ME.role==='admin';
+const navFor=()=>isAd()?[['dash','Tổng quan'],['_g','Quản lý thành viên','mem'],['members','Thành viên','mem'],['bl','Blacklist','mem'],['committees','Ban / Nhóm'],['_g','Hoạt động','act'],['acts','Tổng quan hoạt động','act'],['hist','Lịch sử hoạt động','act'],['_g','Báo cáo','rep'],['cam','Chụp ảnh','rep'],['tpl','Tạo mẫu','rep'],['set','Cài đặt']]:[['me','Hồ sơ của tôi'],['_g','Hoạt động','act'],['acts','Tổng quan hoạt động','act'],['hist','Lịch sử hoạt động','act'],['_g','Báo cáo','rep'],['cam','Chụp ảnh','rep'],['tpl','Mẫu','rep']];
+let OG={},LASTV='';
+const isMgr=()=>isAd()||(!!ME&&ME.role==='member'&&['Chủ nhiệm','Phó chủ nhiệm','Trưởng ban'].includes((find('members',ME.id)||{}).pos));
+const inv=a=>!!ME&&ME.role==='member'&&(a.lead===ME.id||a.staff.some(r=>r.who===ME.id)||a.tasks.some(r=>r.who===ME.id));
+function can(e,id,f){if(isAd())return true;if(!ME)return false;if(e==='members')return id===ME.id&&['phone','email'].includes(f);
+ if(isMgr()&&(e==='activities'||e.startsWith('sub:')))return true;
+ if(e.startsWith('sub:')){const[,aid,k]=e.split(':'),a=find('activities',aid);if(k==='tasks'){const r=find(e,id);return !!r&&r.who===ME.id&&f==='status'}return !!a&&inv(a)&&['rep','inc','med'].includes(k)}return false}
+/* ===== 3. DANH SÁCH LỰA CHỌN cho ô chọn (ban, trạng thái thành viên, trạng thái hoạt động) ===== */
+const OPT={committee:()=>[['','Chưa phân ban'],...S.committees.map(c=>[c.id,c.name])],
+ mstatus:()=>[['active','Đang hoạt động'],['inactive','Dừng hoạt động']],
+ astatus:()=>[['upcoming','Sắp diễn ra'],['ongoing','Đang diễn ra'],['done','Đã hoàn thành'],['cancel','Đã hủy']]};
+const fd=v=>v?v.split('-').reverse().join('/'):'';
+const cName=id=>(S.committees.find(c=>c.id===id)||{}).name||'Chưa phân ban';
+const find=(e,id)=>{if(e==='settings')return S.settings;if(e.startsWith('sub:')){const[,aid,k]=e.split(':'),a=S.activities.find(x=>x.id===aid),v=a&&a[k];return Array.isArray(v)?v.find(r=>r.id===id):v}return S[e].find(x=>x.id===id)};
+function disp(t,v){if(t==='pass')return'••••••';if(v===''||v==null)return'Nhấp để nhập';if(t==='date')return fd(v);if(t.startsWith('sel:')){const o=OPT[t.slice(4)]().find(x=>x[0]===v);return o?o[1]:v}return v}
+/* ===== 3. CHỈNH SỬA TRỰC TIẾP: ed() vẽ ô nhấp để sửa; can() quyết định ai được sửa ô nào ===== */
+function ed(e,id,f,t,v,label){const emp=v===''||v==null;if(!can(e,id,f))return `<span>${E(emp?'—':disp(t,v))}</span>`;return `<span class="ed${emp?' empty':''}" role="button" tabindex="0" title="Nhấp để sửa" aria-label="Sửa ${E(label||f)}" data-e="${e}" data-i="${E(id)}" data-f="${f}" data-t="${t}">${E(disp(t,v))}</span>`}
+function toast(m,err){const d=document.createElement('div');d.className='t'+(err?' err':'');d.textContent=m;document.getElementById('toast').append(d);setTimeout(()=>d.remove(),err?4500:2600)}
+/* ===== 3. KIỂM TRA DỮ LIỆU: tên, email, số điện thoại, ngày sinh, mật khẩu ===== */
+// Kiểm tra dữ liệu trước khi lưu: tên, số, email, điện thoại, ngày sinh và mật khẩu.
+function validate(e,f,v){
+ if(['name','title'].includes(f)&&!v)return 'Vui lòng nhập tên, không để trống.';
+ if(['amt','qty','count','cost','est','max','expected'].includes(f)&&v&&!/^\d+$/.test(v))return 'Chỉ nhập số nguyên (không dấu chấm, phẩy).';
+ if(f==='pass'&&v.length<4)return 'Mật khẩu cần ít nhất 4 ký tự.';
+ if(f==='email'&&v&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))return 'Email chưa đúng định dạng (ví dụ: ten@example.com).';
+ if(f==='phone'&&v&&!/^[0-9 +().-]{8,15}$/.test(v))return 'Số điện thoại cần 8–15 chữ số.';
+ if(f==='dob'&&v&&v>today())return 'Ngày sinh không thể ở tương lai.';
+ if(f==='id'&&!v)return 'Mã thành viên không được để trống.';
+ if(f==='id'&&S.members.some(m=>m.id.toLowerCase()===v.toLowerCase()))return 'Mã thành viên này đã tồn tại.';
+ return null}
+/* ===== 3. Bắt đầu sửa tại chỗ: Enter/nhấp ra ngoài = lưu, Esc = hủy; đổi trạng thái thành viên → ghi ngày dừng + chuyển Blacklist ===== */
+// Bắt đầu sửa một ô trên trang; Enter/làm mờ ô để lưu, Esc để hủy.
+function startEdit(sp){
+ if(sp.querySelector('input,select,textarea'))return;
+ const {e,i,f,t}=sp.dataset;if(!can(e,i,f))return;const it=find(e,i);let val=e==='members'&&f==='id'?it.id:it[f]??'',inp;
+ if(t==='area'){inp=document.createElement('textarea');inp.rows=3}
+ else if(t.startsWith('sel:')){inp=document.createElement('select');OPT[t.slice(4)]().forEach(o=>{const op=new Option(o[1],o[0]);inp.add(op)})}
+ else{inp=document.createElement('input');inp.type=t==='pass'?'password':t==='date'?'date':t==='time'?'time':t==='email'?'email':t==='tel'?'tel':'text'}
+ inp.value=val;inp.setAttribute('aria-label',sp.getAttribute('aria-label'));
+ sp.textContent='';sp.append(inp);inp.focus();if(inp.select&&t!=='date'&&t!=='time')inp.select();
+ let done=false;
+ const end=ok=>{if(done)return;done=true;
+  if(ok){const v=inp.value.trim();
+   if(v!==String(val)){const er=validate(e,f,v);if(er){toast(er,1);done=false;inp.focus();return}
+    if(e==='members'&&f==='id'){S.activities.forEach(a=>{});}
+    it[f]=v;let msg='Đã lưu thay đổi.';if(e==='members'&&f==='status'){if(v==='inactive'){it.stopDate=it.stopDate||today();msg='Đã chuyển '+it.name+' sang Blacklist (dừng hoạt động ngày '+fd(it.stopDate)+').'}else{it.stopDate='';msg='Đã đưa '+it.name+' trở lại danh sách thành viên.'}}if(save())toast(msg)}}
+  render(true)};
+ inp.addEventListener('keydown',k=>{if(k.key==='Enter'&&t!=='area'){k.preventDefault();end(true)}else if(k.key==='Escape'){k.preventDefault();end(false)}else if(k.key==='Enter'&&t==='area'&&(k.ctrlKey||k.metaKey))end(true)});
+ inp.addEventListener('blur',()=>end(true));
+ if(inp.tagName==='SELECT')inp.addEventListener('change',()=>end(true))}
+document.addEventListener('click',e=>{const s=e.target.closest('.ed');if(s)startEdit(s)});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList&&e.target.classList.contains('ed')){e.preventDefault();startEdit(e.target)}});
+
+
+
+/* ===== 4. HỘP THOẠI XÁC NHẬN dùng chung ===== */
+function ask(title,msg,btns,sel){return new Promise(r=>{
+ dT.textContent=title;dM.textContent=msg;dX.innerHTML=sel?`<label class="fl">Chuyển thành viên sang:<br><select id="dS">${sel.map(o=>`<option value="${E(o[0])}">${E(o[1])}</option>`).join('')}</select></label>`:'';
+ dB.innerHTML='';btns.forEach(b=>{const x=document.createElement('button');x.className='btn '+(b.c||'');x.textContent=b.l;x.onclick=()=>{const v=sel?document.getElementById('dS').value:null;dlg.close();r({v:b.v,sel:v})};dB.append(x)});
+ dlg.oncancel=()=>r({v:'no'});dlg.showModal()})}
+const CANCEL={l:'Hủy',v:'no',c:'ghost'};
+
+
+
+/* ===== 4. XÓA có xác nhận: thành viên (dừng hoạt động → Blacklist / xóa hẳn), ban (chuyển thành viên), hoạt động, mẫu, báo cáo ===== */
+async function del(e,id){
+ if(e==='members'){const m=find(e,id);const btns=[CANCEL];if(m.status==='active')btns.push({l:'Dừng hoạt động (chuyển Blacklist)',v:'off',c:'alt'});btns.push({l:'Xóa vĩnh viễn',v:'del',c:'danger'});
+  const r=await ask('Xóa thành viên?',`Bạn muốn xử lý hồ sơ “${m.name}” như thế nào? Xóa vĩnh viễn không thể khôi phục.`,btns);
+  if(r.v==='off'){m.status='inactive';m.stopDate=m.stopDate||today();save();toast('Đã chuyển '+m.name+' sang Blacklist (dừng hoạt động ngày '+fd(m.stopDate)+').')}
+  else if(r.v==='del'){S.members=S.members.filter(x=>x.id!==id);S.activities.forEach(a=>a.att=a.att.filter(u=>u!==m.uid));save();toast('Đã xóa thành viên.')}else return}
+ else if(e==='committees'){const c=find(e,id),n=S.members.filter(m=>m.committee===id).length;
+  const sel=n?[['','Chưa phân ban'],...S.committees.filter(x=>x.id!==id).map(x=>[x.id,x.name])]:null;
+  const r=await ask('Xóa ban / nhóm?',n?`Ban “${c.name}” đang có ${n} thành viên. Chọn nơi chuyển họ đến — dữ liệu thành viên sẽ không bị mất.`:`Xóa ban “${c.name}”?`,[CANCEL,{l:'Xóa ban',v:'del',c:'danger'}],sel);
+  if(r.v!=='del')return;S.members.forEach(m=>{if(m.committee===id)m.committee=r.sel||''});S.activities.forEach(a=>{if(a.committee===id)a.committee=''});S.committees=S.committees.filter(x=>x.id!==id);save();toast('Đã xóa ban.')}
+ else if(e==='photos'){const r=await ask('Xóa báo cáo?','Báo cáo sẽ bị xóa khỏi bộ nhớ trình duyệt và không thể khôi phục.',[CANCEL,{l:'Xóa báo cáo',v:'del',c:'danger'}]);if(r.v!=='del')return;S.photos=S.photos.filter(x=>x.id!==id);save();toast('Đã xóa báo cáo.')}
+ else if(e==='templates'){if(S.templates.length<2){toast('Cần giữ lại ít nhất một mẫu ảnh.',1);return}const t=find(e,id);const r=await ask('Xóa mẫu ảnh?','Xóa mẫu “'+t.name+'”? Các ảnh đã chụp vẫn được giữ nguyên.',[CANCEL,{l:'Xóa mẫu',v:'del',c:'danger'}]);if(r.v!=='del')return;S.templates=S.templates.filter(x=>x.id!==id);save();toast('Đã xóa mẫu.')}
+ else{const a=find(e,id);const r=await ask('Xóa hoạt động?',`Xóa hoạt động “${a.title}”? Thao tác này không thể hoàn tác.`,[CANCEL,{l:'Xóa hoạt động',v:'del',c:'danger'}]);if(r.v!=='del')return;S.activities=S.activities.filter(x=>x.id!==id);save();toast('Đã xóa hoạt động.')}
+ render()}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-del]');if(b){const[x,y]=b.dataset.del.split(':');del(x,y)}});
+const delBtn=(e,id,l)=>(!isAd()&&e!=='photos')?'':`<button class="del" data-del="${e}:${E(id)}" aria-label="Xóa ${E(l)}" title="Xóa">🗑</button>`;
+
+
+
+/* ===== 4. HỘP TẠO MỚI: bắt buộc nhập tên mới được tạo (thành viên, ban, hoạt động, mẫu) ===== */
+function formDlg(title,html,ok,check){return new Promise(r=>{dT.textContent=title;dM.textContent='';dX.innerHTML=html+'<p id="fe" role="alert" style="color:#b3261e;margin:6px 0 0"></p>';dB.innerHTML='';
+ const no=document.createElement('button'),go=document.createElement('button');no.className='btn ghost';no.textContent='Hủy';go.className='btn';go.textContent=ok;
+ const done=v=>{dlg.close();r(v)};no.onclick=()=>done(null);
+ go.onclick=()=>{const o={};dX.querySelectorAll('[name]').forEach(i=>o[i.name]=i.value.trim());const er=!o.name?'Vui lòng nhập tên, không để trống.':(check&&check(o));if(er){document.getElementById('fe').textContent=er;return}done(o)};
+ dX.querySelectorAll('input').forEach(i=>i.addEventListener('keydown',k=>{if(k.key==='Enter'){k.preventDefault();go.click()}}));
+ dB.append(no,go);dlg.oncancel=()=>r(null);dlg.showModal();const f=dX.querySelector('[name=name]');if(f)f.focus()})}
+const fld=(n,l,t,v)=>`<label class="fl">${l}<br><input name="${n}" type="${t||'text'}" value="${E(v||'')}" autocomplete="off" style="width:100%"></label>`;
+// Thêm hồ sơ thành viên mới; mã TV... được tự tạo tăng dần.
+async function addMember(){const o=await formDlg('Thêm thành viên',fld('name','Họ tên *')+fld('dob','Ngày sinh (để thành viên đăng nhập)','date')+`<label class="fl">Ban / Nhóm<br><select name="committee" style="width:100%">${OPT.committee().map(x=>`<option value="${E(x[0])}">${E(x[1])}</option>`).join('')}</select></label>`,'Thêm thành viên',o=>o.dob&&o.dob>today()?'Ngày sinh không thể ở tương lai.':null);if(!o)return;
+ const n=S.members.length?Math.max(...S.members.map(m=>parseInt(m.id.replace(/\D/g,''))||0))+1:1;
+ S.members.unshift({id:'TV'+String(n).padStart(3,'0'),uid:uid(),name:o.name,dob:o.dob,email:'',phone:'',cls:'',committee:o.committee,join:today(),status:'active',stopDate:'',photo:'',ts:Date.now()});
+ if(save())toast('Đã thêm thành viên '+o.name+'.');V={view:'members',q:'',fc:'',fs:'',page:1};render()}
+// Tạo ban/nhóm mới từ hộp thoại nhập thông tin.
+async function addCommittee(){const o=await formDlg('Tạo ban / nhóm mới',fld('name','Tên ban *')+fld('leader','Trưởng ban')+fld('description','Mô tả'),'Tạo ban');if(!o)return;S.committees.push({id:uid(),name:o.name,description:o.description,leader:o.leader});if(save())toast('Đã tạo ban '+o.name+'.');V.view='committees';render()}
+// Tạo hoạt động mới; chỉ người có quyền quản lý mới được tạo.
+async function addAct(){if(!isMgr())return;const o=await formDlg('Tạo hoạt động mới',fld('name','Tên hoạt động *')+`<label class="fl">Loại hoạt động<br><select name="type" style="width:100%">${OPT.atype().map(x=>`<option>${E(x[0])}</option>`).join('')}</select></label>`+fld('date','Ngày *','date',today())+fld('start','Giờ bắt đầu','time','08:00')+fld('end','Giờ kết thúc','time','')+fld('location','Địa điểm')+fld('org','Đơn vị tổ chức')+`<label class="fl">Người phụ trách<br><select name="lead" style="width:100%">${OPT.mem().map(x=>`<option value="${E(x[0])}">${E(x[1])}</option>`).join('')}</select></label>`+fld('expected','Số lượng dự kiến'),'Tạo hoạt động',o=>!o.date?'Vui lòng chọn ngày.':(o.expected&&!/^\d+$/.test(o.expected)?'Số lượng dự kiến chỉ nhập số.':null));if(!o)return;
+ const a={id:uid(),title:o.name,type:o.type,date:o.date,time:o.start||'08:00',end:o.end,location:o.location,org:o.org,lead:o.lead,expected:o.expected,description:'',purpose:'',committee:'',status:'plan',est:'0',by:isAd()?'admin':ME.id,att:[]};norm(a);S.activities.unshift(a);if(save())toast('Đã tạo hoạt động — hồ sơ hoạt động đã mở.');V={view:'actd',aid:a.id,tab:'ov',q:'',fc:'',fs:'',page:1};render()}
+/* ===== 5. ẢNH ĐẠI DIỆN thành viên (chọn ảnh có sẵn để làm avatar — khác với chụp báo cáo) ===== */
+function photo(id){if(!can('members',id,'phone'))return;const i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=()=>{const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=120;const x=c.getContext('2d'),s=Math.min(im.width,im.height);x.drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,120,120);find('members',id).photo=c.toDataURL('image/jpeg',.8);if(save())toast('Đã cập nhật ảnh.');render(true)};im.onerror=()=>toast('Tệp không phải ảnh hợp lệ.',1);im.src=r.result};r.readAsDataURL(f)};i.click()}
+const initials=n=>n.trim().split(/\s+/).slice(-2).map(w=>w[0]).join('').toUpperCase();
+
+
+
+/* ===== 5. QUẢN LÝ THÀNH VIÊN — thẻ một thành viên (dùng cho cả trang Thành viên và Blacklist) ===== */
+function memberCard(m){return `<article class="card"><div class="mh"><button class="av" data-photo="${E(m.id)}" aria-label="Đổi ảnh của ${E(m.name)}" title="Nhấp để đổi ảnh">${m.photo?`<img src="${m.photo}" alt="">`:E(initials(m.name))}</button><div><div class="ttl">${ed('members',m.id,'name','text',m.name,'họ tên')}</div><span class="tag ${m.status==='active'?'on':'off'}">${m.status==='active'?'Đang hoạt động':'Dừng hoạt động'}</span></div></div>${delBtn('members',m.id,m.name)}
+ ${[['Mã','id','text'],['Ngày sinh','dob','date'],['Email','email','email'],['Điện thoại','phone','tel'],['Lớp / Khoa','cls','text'],['Ban / Nhóm','committee','sel:committee'],['Chức vụ','pos','sel:pos'],['Ngày vào CLB','join','date'],['Trạng thái','status','sel:mstatus'],...(m.status==='inactive'?[['Ngày dừng hoạt động','stopDate','date']]:[])].map(([l,f,t])=>`<div class="f"><i>${l}</i>${ed('members',m.id,f,t,m[f],l)}</div>`).join('')}</article>`}
+
+
+
+/* ===== 5. QUẢN LÝ THÀNH VIÊN — danh sách (chỉ người đang hoạt động, một trang dài) ===== */
+function memList(){const q=V.q.toLowerCase();let L=S.members.filter(m=>m.status==='active'&&(!V.fc||m.committee===(V.fc==='none'?'':V.fc))&&(!V.fs||m.status===V.fs)&&(!q||[m.name,m.id,m.email,m.cls,m.phone].join(' ').toLowerCase().includes(q)));
+ const pages=Math.max(1,Math.ceil(L.length/PS));V.page=Math.min(V.page,pages);const sl=L.slice((V.page-1)*PS,V.page*PS);
+ document.getElementById('ml').innerHTML=(sl.length?`<div class="grid">${sl.map(memberCard).join('')}</div>`:'<div class="empty-s">Không tìm thấy thành viên phù hợp. Hãy đổi bộ lọc hoặc thêm thành viên mới.</div>')+
+ (pages>1?`<nav class="pg" aria-label="Phân trang">${Array.from({length:pages},(_,i)=>`<button class="btn ${i+1===V.page?'':'ghost'}" data-pg="${i+1}" ${i+1===V.page?'aria-current="page"':''}>${i+1}</button>`).join('')}</nav>`:'')+`<p class="empty-s">Hiển thị ${sl.length} / ${L.length} thành viên</p>`}
+document.addEventListener('click',e=>{const p=e.target.closest('[data-photo]');if(p)photo(p.dataset.photo);const g=e.target.closest('[data-pg]');if(g){V.page=+g.dataset.pg;memList();window.scrollTo({top:0})}const n=e.target.closest('[data-go]');if(n){V.view=n.dataset.go;render()}const a=e.target.closest('[data-act]');if(a)({m:addMember,c:addCommittee,a:addAct,t:addTpl})[a.dataset.act]()});
+document.addEventListener('change',e=>{const c=e.target.closest('[data-att]');if(c){const[a,u]=c.dataset.att.split(':'),x=find('activities',a);x.att=c.checked?[...new Set([...x.att,u])]:x.att.filter(i=>i!==u);save();render(true)}});
+
+
+
+/* ===== CÁC TRANG: mỗi hàm bên dưới là một trang trong menu ===== */
+const views={
+
+/* ===== TRANG TỔNG QUAN (dash) ===== */
+dash(){const act=S.members.filter(m=>m.status==='active').length,nw=S.members.filter(m=>m.join>=dd(-30)).length,rate=S.members.length?Math.round(act/S.members.length*100):0;
+ const up=S.activities.filter(a=>a.date>=today()&&['upcoming','ongoing'].includes(cat(a))).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,4);
+ const rc=[...S.members].sort((a,b)=>(b.ts||0)-(a.ts||0)).slice(0,5);
+ return `<div class="card" style="background:var(--cream)"><h1>Chào mừng đến với ${E(S.settings.name)}</h1><p style="margin:.3em 0 0;font:700 1.15rem 'Baloo 2',sans-serif;color:var(--red)">${E(S.settings.slogan)}</p>
+ <div class="row"><button class="btn" data-act="m">+ Thêm thành viên</button><button class="btn alt" data-act="a">+ Tạo hoạt động</button></div></div>
+ <div class="grid stats" style="margin-top:14px">${[[S.members.length,'Tổng thành viên'],[nw,'Thành viên mới (30 ngày)'],[rate+'%','Tỷ lệ hoạt động'],[S.committees.length,'Số ban / nhóm']].map(x=>`<div class="card stat"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('')}</div>
+ <div class="cols"><section class="card"><h2>Hoạt động sắp tới</h2><ul class="l">${up.map(a=>`<li><span><b>${E(a.title)}</b><br><small>${fd(a.date)} • ${E(a.time)} • ${E(a.location||'Chưa có địa điểm')}</small></span></li>`).join('')||'<li>Chưa có hoạt động sắp tới.</li>'}</ul><div class="row"><button class="btn ghost" data-go="acts">Xem tất cả</button></div></section>
+ <section class="card"><h2>Thành viên mới thêm</h2><ul class="l">${rc.map(m=>`<li><span><b>${E(m.name)}</b><br><small>${E(m.id)} • ${E(cName(m.committee))}</small></span><small>${fd(m.join)}</small></li>`).join('')||'<li>Chưa có thành viên.</li>'}</ul><div class="row"><button class="btn ghost" data-go="members">Quản lý thành viên</button></div></section></div>`},
+
+/* ===== TRANG THÀNH VIÊN (members) — trong nhóm "Quản lý thành viên" ===== */
+members(){return `<div class="row tool"><input id="q" type="search" placeholder="Tìm theo tên, mã, email, lớp…" aria-label="Tìm thành viên" value="${E(V.q)}" style="flex:1;min-width:200px"><select id="fc" aria-label="Lọc theo ban"><option value="">Tất cả ban</option>${S.committees.map(c=>`<option value="${c.id}" ${V.fc===c.id?'selected':''}>${E(c.name)}</option>`).join('')}<option value="none" ${V.fc==='none'?'selected':''}>Chưa phân ban</option></select><button class="btn" data-act="m">+ Thêm thành viên</button><button class="btn ghost" data-exp="active">⬇ Xuất file</button></div><div id="ml"></div>`},
+
+/* ===== TRANG BAN / NHÓM (committees) ===== */
+committees(){return `<div class="row"><h2>Ban / Nhóm</h2><span class="sp"></span><button class="btn" data-act="c">+ Tạo ban mới</button></div><div class="grid">${S.committees.map(c=>`<article class="card">${delBtn('committees',c.id,c.name)}<div class="ttl" style="padding-right:30px">${ed('committees',c.id,'name','text',c.name,'tên ban')}</div><div class="f" style="margin-top:6px"><i>Mô tả</i>${ed('committees',c.id,'description','area',c.description,'mô tả')}</div><div class="f"><i>Trưởng ban</i>${ed('committees',c.id,'leader','text',c.leader,'trưởng ban')}</div><div class="f"><i>Số thành viên</i><b>${S.members.filter(m=>m.committee===c.id).length}</b></div></article>`).join('')||'<div class="empty-s">Chưa có ban nào. Hãy bấm “Tạo ban mới”.</div>'}</div>`},
+/* ===== TRANG HOẠT ĐỘNG (acts) + điểm danh ===== */
+acts(){const A=S.activities,c=k=>A.filter(a=>cat(a)===k).length,mo=today().slice(0,7),
+ st=[['🔴','Đang diễn ra',c('ongoing')],['🟡','Sắp tới',c('upcoming')],['🟢','Đã hoàn thành',c('done')],['📊','Hoạt động trong tháng',A.filter(a=>a.date.slice(0,7)===mo).length],['👥','Tổng lượt tham gia',A.reduce((n,a)=>n+a.chk.length,0)],['📋','Chưa hoàn tất báo cáo',A.filter(a=>['ended','awaitrep'].includes(a.status)).length],['⚠️','Hoạt động có vấn đề',A.filter(a=>a.inc.some(i=>!i.res)).length]],
+ F=[['all','Tất cả'],['upcoming','Sắp tới'],['ongoing','Đang diễn ra'],['done','Đã hoàn thành'],['cancel','Đã hủy']],f=V.af||'all',L=A.filter(a=>f==='all'||cat(a)===f).sort((x,y)=>y.date.localeCompare(x.date));
+ return `<div class="row"><h2>Hoạt động</h2><span class="sp"></span>${isMgr()?'<button class="btn" data-act="a">＋ Tạo hoạt động</button>':''}</div><div class="grid stats">${st.map(x=>`<div class="card stat"><b>${x[2]}</b><span>${x[0]} ${x[1]}</span></div>`).join('')}</div>
+ <div class="row">${F.map(x=>`<button class="btn ${f===x[0]?'':'ghost'}" data-af="${x[0]}">${x[1]}</button>`).join('')}</div>
+ <div class="grid">${L.map(a=>`<article class="card">${delBtn('activities',a.id,a.title)}<div class="ttl" style="padding-right:30px">${ed('activities',a.id,'title','text',a.title,'tên hoạt động')}</div>${[['Trạng thái','status','sel:wf'],['Loại','type','sel:atype'],['Ngày','date','date'],['Giờ','time','time'],['Địa điểm','location','text'],['Phụ trách','lead','sel:mem']].map(([l,k,t])=>`<div class="f"><i>${l}</i>${ed('activities',a.id,k,t,a[k],l)}</div>`).join('')}<div class="row"><button class="btn alt" data-open="${a.id}">Mở hồ sơ</button>${isMgr()?`<button class="btn ghost" data-copy="${a.id}">Sao chép</button>`:''}</div></article>`).join('')||'<div class="empty-s">Chưa có hoạt động nào trong mục này.</div>'}</div>`},
+/* ===== TRANG LỊCH SỬ HOẠT ĐỘNG (hist): lọc theo năm, bấm để mở hồ sơ ===== */
+hist(){const ys=[...new Set(S.activities.map(a=>a.date.slice(0,4)))].sort().reverse(),y=V.hy||'',L=S.activities.filter(a=>(a.status==='done'||a.date<today())&&(!y||a.date.startsWith(y))).sort((a,b)=>b.date.localeCompare(a.date));
+ return `<h2>📚 Lịch sử hoạt động CLB</h2><div class="row"><button class="btn ${y?'ghost':''}" data-hy="">Tất cả</button>${ys.map(x=>`<button class="btn ${y===x?'':'ghost'}" data-hy="${x}">${x}</button>`).join('')}</div><div class="card"><ul class="l">${L.map(a=>`<li><span><b>${fd(a.date).slice(0,5)}</b> ${E(a.title)}<br><small>${E(a.type)} • ${E(wfL(a.status))}</small></span><button class="btn ghost" data-open="${a.id}">Mở hồ sơ</button></li>`).join('')||'<li>Chưa có hoạt động nào trong lịch sử.</li>'}</ul></div>`},
+/* ===== HỒ SƠ HOẠT ĐỘNG (actd): mỗi hoạt động có các tab chi tiết — nội dung từng tab nằm trong TB ở khối "7. HOẠT ĐỘNG" ===== */
+actd(){const a=find('activities',V.aid);if(!a)return '<div class="empty-s">Không tìm thấy hoạt động.</div>';V.tab=TB[V.tab]?V.tab:'ov';
+ return `<div class="row"><button class="btn ghost" data-go="acts">← Danh sách hoạt động</button></div><h2>${E(a.title)}</h2><p><span class="tag">${E(wfL(a.status))}</span> ${fd(a.date)} • ${E(a.time)}${a.end?'–'+E(a.end):''} • ${E(a.location||'Chưa có địa điểm')}</p><div class="tabs" role="tablist">${TABS.map(t=>`<button class="btn ${V.tab===t[0]?'':'ghost'}" role="tab" data-tab="${t[0]}">${t[1]}</button>`).join('')}</div><div class="card">${TB[V.tab](a)}</div>`},
+/* ===== TRANG HỒ SƠ CỦA TÔI (me) — dành cho thành viên ===== */
+me(){const m=find('members',ME.id);return `<h2>Hồ sơ của tôi</h2><p>Bạn có thể sửa <b>số điện thoại</b>, <b>email</b> và <b>ảnh đại diện</b>. Thông tin còn lại do quản trị viên quản lý.</p><div class="grid">${memberCard(m)}</div>`},
+/* ===== TRANG BÁO CÁO • CHỤP ẢNH (cam) — chỉ chụp trực tiếp bằng camera ===== */
+cam(){const adm=isAd();if(!CAM.tpl||!find('templates',CAM.tpl))CAM.tpl=(S.templates[0]||{}).id||'';if(!adm)CAM.mem=ME.id;else if(!CAM.mem||!find('members',CAM.mem))CAM.mem=(S.members[0]||{}).id||'';
+ if(CAM.act&&!capActs().some(a=>a.id===CAM.act))CAM.act='';const ph=S.photos.filter(p=>adm||p.mem===ME.id).sort((a,b)=>b.ts-a.ts),fr=!!CAM.src;
+ return `<h2>Báo cáo • Chụp ảnh</h2><p>Chỉ chụp trực tiếp bằng camera, không tải ảnh có sẵn lên. Ảnh chụp có đúng giao diện của mẫu đã chọn. Mục “Hoạt động” chỉ hiện các hoạt động do Admin, Chủ nhiệm, Phó chủ nhiệm, Trưởng ban tạo và giao cho bạn.</p><div class="card" style="margin-top:12px"><div class="row tool">${adm?`<label class="fl">Thành viên<br><select id="cm">${S.members.map(m=>`<option value="${E(m.id)}" ${CAM.mem===m.id?'selected':''}>${E(m.name)} (${E(m.id)})</option>`).join('')}</select></label>`:''}
+ <label class="fl">Mẫu báo cáo<br><select id="ct">${S.templates.map(t=>`<option value="${t.id}" ${CAM.tpl===t.id?'selected':''}>${E(t.name)}</option>`).join('')}</select></label>
+ <label class="fl">Hoạt động<br><select id="ca"><option value="">— Không chọn —</option>${capActs().map(a=>`<option value="${a.id}" ${CAM.act===a.id?'selected':''}>${E(a.title)}</option>`).join('')}</select></label>
+ <label class="fl">Nhiệm vụ cần minh chứng<br><select id="ck"><option value="">— Không —</option>${taskOpts()}</select></label></div>
+ <div class="row"><button class="btn" id="bOpen">📷 ${fr?'Chụp lại':'Mở camera'}</button><button class="btn alt" id="bShot" style="display:none">⚪ Chụp</button><button class="btn ghost" id="bGps">📍 Lấy vị trí</button><span id="gpsT" class="tag">${E(CAM.gps||'Chưa có vị trí')}</span></div>
+ <small>Trình duyệt sẽ hỏi quyền dùng camera và vị trí — hãy chọn “Cho phép”.</small>
+ <video id="vid" playsinline muted style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none"></video>
+ <canvas id="cv" style="display:${fr?'block':'none'};width:100%;max-width:560px;border-radius:14px" aria-label="Xem trước báo cáo"></canvas>
+ <div class="row" id="saveRow" style="display:${fr?'flex':'none'}"><label><input type="checkbox" id="auto" checked> Tự động điểm danh cho hoạt động đã chọn</label><button class="btn" id="bSave">Lưu báo cáo</button></div></div>
+ <h3 style="margin-top:16px">Báo cáo đã chụp (${ph.length})</h3><div class="grid">${ph.map(p=>`<article class="card"><img src="${p.data}" alt="Báo cáo" data-zoom="${p.id}" style="width:100%;border-radius:12px;cursor:zoom-in">${delBtn('photos',p.id,'báo cáo')}<div><b>${E((find('members',p.mem)||{name:'(đã xóa)'}).name)}</b></div><small>${new Date(p.ts).toLocaleString('vi-VN')}${p.act&&find('activities',p.act)?' • '+E(find('activities',p.act).title):''}</small></article>`).join('')||'<div class="empty-s">Chưa có báo cáo nào. Hãy chụp báo cáo đầu tiên.</div>'}</div>`},
+/* ===== TRANG BÁO CÁO • TẠO MẪU (admin) / MẪU (thành viên) (tpl) ===== */
+tpl(){const adm=isAd();return `<div class="row"><h2>Báo cáo • ${adm?'Tạo mẫu':'Mẫu'}</h2><span class="sp"></span>${adm?'<button class="btn" data-act="t">+ Tạo mẫu mới</button>':''}</div><p>${adm?'Nhấp vào tên, ghi chú, vị trí, màu, cỡ chữ để sửa; tích chọn để bật/tắt từng thông tin. Ảnh xem trước chính là giao diện thành viên sẽ thấy khi chụp.':'Chọn một mẫu rồi bấm “Dùng mẫu này” để chụp báo cáo đúng giao diện mẫu.'}</p><div class="grid">${S.templates.map(t=>`<article class="card">${delBtn('templates',t.id,t.name)}<div class="ttl" style="padding-right:30px">${ed('templates',t.id,'name','text',t.name,'tên mẫu')}</div><canvas data-prev="${t.id}" style="width:100%;border-radius:12px" aria-label="Xem trước mẫu"></canvas>
+ <div class="f"><i>Ghi chú</i>${ed('templates',t.id,'note','text',t.note,'ghi chú')}</div>${adm?`<div class="f"><i>Vị trí</i>${ed('templates',t.id,'pos','sel:tpos',t.pos,'vị trí')}</div><div class="f"><i>Màu nền</i>${ed('templates',t.id,'color','sel:tcolor',t.color,'màu nền')}</div><div class="f"><i>Cỡ chữ</i>${ed('templates',t.id,'size','sel:tsize',t.size,'cỡ chữ')}</div><div class="f"><i>Độ đậm nền</i>${ed('templates',t.id,'op','sel:topac',t.op||'0.35','độ đậm nền')}</div>
+ ${[['club','Tên CLB'],['time','Giờ'],['date','Ngày'],['gps','Vị trí GPS'],['member','Tên thành viên'],['activity','Hoạt động']].map(([k,l])=>`<label style="display:inline-flex;gap:6px;margin:2px 10px 2px 0"><input type="checkbox" data-tf="${t.id}:${k}" ${t[k]?'checked':''}> ${l}</label>`).join('')}`:''}
+ <div class="row"><button class="btn alt" data-use="${t.id}">Dùng mẫu này</button></div></article>`).join('')}</div>`},
+/* ===== TRANG BLACKLIST (bl) — trong nhóm "Quản lý thành viên": người đã dừng hoạt động + ngày dừng ===== */
+bl(){const L=S.members.filter(m=>m.status==='inactive').sort((a,b)=>(b.stopDate||'').localeCompare(a.stopDate||''));return `<div class="row"><h2>Blacklist</h2><span class="sp"></span><button class="btn ghost" data-exp="bl">⬇ Xuất file</button></div><p>Thành viên đã dừng hoạt động nằm ở đây, kèm ngày dừng. Muốn cho họ hoạt động lại, nhấp vào “Trạng thái” và chọn “Đang hoạt động”.</p>${L.length?`<div class="grid">${L.map(memberCard).join('')}</div>`:'<div class="empty-s">Blacklist đang trống.</div>'}`},
+/* ===== TRANG CÀI ĐẶT (set): tên CLB, khẩu hiệu, email, mật khẩu admin, quyền riêng tư ===== */
+set(){const s=S.settings;return `<h2>Cài đặt</h2><div class="card" style="margin-top:12px"><div class="f"><i>Tên CLB</i>${ed('settings','x','name','text',s.name,'tên CLB')}</div><div class="f"><i>Khẩu hiệu</i>${ed('settings','x','slogan','text',s.slogan,'khẩu hiệu')}</div><div class="f"><i>Email liên hệ</i>${ed('settings','x','email','email',s.email,'email liên hệ')}</div><div class="f"><i>Mật khẩu quản trị</i>${ed('settings','x','pass','pass',s.pass,'mật khẩu quản trị')}</div></div>
+ <div class="card" style="margin-top:14px;background:var(--cream)"><h3>🔒 Lưu ý về quyền riêng tư</h3><p>Chỉ thu thập thông tin cá nhân thật sự cần thiết cho hoạt động CLB. Chỉ cấp quyền xem hồ sơ cho người có trách nhiệm, không chia sẻ danh sách thành viên ra ngoài và xóa dữ liệu khi không còn cần dùng.</p></div>
+ <div class="card" style="margin-top:14px"><h3>Dữ liệu demo</h3><p>Dữ liệu chỉ lưu trong trình duyệt này, không chia sẻ giữa các thiết bị và không được mã hóa. Phân quyền quản trị viên / trưởng ban / thành viên cần bản kết nối Supabase.</p><button class="btn danger" id="reset">Đặt lại dữ liệu mẫu</button></div>`}};
+
+
+
+/* ===== 11. VẼ GIAO DIỆN: dựng menu dọc rồi vẽ trang đang chọn ===== */
+// Điều phối việc vẽ lại giao diện: kiểm tra đăng nhập, tạo menu và hiện trang đang chọn.
+function render(keep){const y=scrollY;if(ME&&ME.role==='member'&&!find('members',ME.id))ME=null;if(!ME){renderLogin();return}if(V.view!=='actd'&&!navFor().some(n=>n[0]===V.view))V.view=navFor()[0][0];stopCam();document.getElementById('hName').textContent=S.settings.name;document.getElementById('hSlogan').textContent=S.settings.slogan;document.title=S.settings.name;
+ if(V.view!==LASTV){const cu=navFor().find(n=>n[0]===V.view);if(cu&&cu[2])OG[cu[2]]=true;LASTV=V.view}
+ nav.innerHTML='<button class="closeb" data-sb>✕ Đóng menu</button>'+navFor().map(n=>n[0]==='_g'?`<button class="grpb ${navFor().some(c=>c[2]===n[2]&&c[0]===V.view)?'has':''}" data-grp="${n[2]}" aria-expanded="${!!OG[n[2]]}">${n[1]}<span aria-hidden="true">${OG[n[2]]?'▾':'▸'}</span></button>`:n[2]?(OG[n[2]]?`<button class="sub" data-go="${n[0]}" ${V.view===n[0]?'aria-current="page"':''}>${n[1]}</button>`:''):`<button data-go="${n[0]}" ${V.view===n[0]?'aria-current="page"':''}>${n[1]}</button>`).join('')+`<button class="out" data-logout>Đăng xuất (${isAd()?'Quản trị viên':E((find('members',ME.id)||{}).name)})</button>`;document.body.classList.add('auth');
+ let hint='';try{if(isAd()&&!localStorage.getItem('ntb-hint'))hint=`<div class="hint"><span>💡 Mẹo: nhấp vào bất kỳ chữ nào có gạch chấm để sửa ngay. <b>Enter</b> hoặc nhấp ra ngoài để lưu, <b>Esc</b> để hủy. Muốn xóa, rê chuột vào thẻ rồi bấm biểu tượng thùng rác.</span><button class="btn ghost" id="hx">Đã hiểu</button></div>`}catch(e){}
+ app.innerHTML=`${hint}${views[V.view]()}`;
+ if(V.view==='members'){memList();q.oninput=()=>{V.q=q.value;V.page=1;memList()};fc.onchange=()=>{V.fc=fc.value;V.page=1;memList()}}
+ if(V.view==='set')reset.onclick=async()=>{const r=await ask('Đặt lại dữ liệu?','Toàn bộ dữ liệu hiện tại sẽ bị thay bằng dữ liệu mẫu.',[CANCEL,{l:'Đặt lại',v:'ok',c:'danger'}]);if(r.v==='ok'){S=seed();save();render();toast('Đã đặt lại dữ liệu mẫu.')}};
+ if(V.view==='cam')bindCam();if(V.view==='tpl')paintPrev();const h=document.getElementById('hx');if(h)h.onclick=()=>{try{localStorage.setItem('ntb-hint','1')}catch(e){}render(true)};
+ if(keep)scrollTo(0,y)}
+const $=id=>document.getElementById(id);
+/* ===== 8. BÁO CÁO — MẪU: mẫu mặc định, lựa chọn vị trí/màu/cỡ chữ, tạo mẫu mới ===== */
+function defaultTpl(){return [{id:'t1',name:'Điểm danh sinh hoạt',note:'Có mặt tại buổi sinh hoạt CLB',pos:'bl',color:'red',size:'1',club:1,time:1,date:1,gps:1,member:1,activity:1},{id:'t2',name:'Ảnh hoạt động (gọn)',note:'',pos:'br',color:'dark',size:'1',club:1,time:1,date:1,gps:0,member:0,activity:1}]}
+Object.assign(OPT,{tpos:()=>[['bl','Dưới – trái'],['br','Dưới – phải'],['tl','Trên – trái'],['tr','Trên – phải']],tcolor:()=>[['red','Đỏ CLB'],['dark','Đen mờ'],['cream','Kem sáng']],tsize:()=>[['0.8','Nhỏ'],['1','Vừa'],['1.3','Lớn']],topac:()=>[['0.2','Rất nhạt'],['0.35','Nhạt'],['0.55','Vừa'],['0.85','Đậm']]});
+/* ===== 8. BÁO CÁO — TẠO MẪU (admin) ===== */
+async function addTpl(){const o=await formDlg('Tạo mẫu báo cáo mới',fld('name','Tên mẫu *')+fld('note','Ghi chú in lên ảnh'),'Tạo mẫu');if(!o)return;S.templates.push({id:uid(),name:o.name,note:o.note,pos:'bl',color:'red',size:'1',club:1,time:1,date:1,gps:1,member:1,activity:1});if(save())toast('Đã tạo mẫu '+o.name+'.');V.view='tpl';render()}
+document.addEventListener('change',e=>{const c=e.target.closest('[data-tf]');if(c){const[i,k]=c.dataset.tf.split(':');find('templates',i)[k]=c.checked?1:0;save();toast('Đã lưu mẫu.');paintPrev()}});
+document.addEventListener('click',e=>{if(e.target.closest('[data-logout]'))logout();const z=e.target.closest('[data-zoom]');if(z){const p=find('photos',z.dataset.zoom);if(p){ask('Ảnh đã chụp',((find('members',p.mem)||{}).name||'Thành viên đã xóa')+' • '+new Date(p.ts).toLocaleString('vi-VN'),[{l:'Đóng',v:'no',c:'ghost'}]);dX.innerHTML='<img alt="Ảnh đã chụp" style="width:100%;border-radius:12px" src="'+p.data+'">'}}});
+
+
+// Ghi nhớ phiên đăng nhập trên thiết bị này nếu người dùng chọn ô bên dưới.
+let LM = 'admin';
+
+function renderLogin() {
+  document.body.classList.remove('auth');
+  hName.textContent = S.settings.name;
+  hSlogan.textContent = S.settings.slogan;
+  nav.innerHTML = '';
+
+  app.innerHTML = `
+    <div class="card login">
+      <h2>Đăng nhập</h2>
+
+      <label class="fl">
+        Gmail cá nhân<br>
+        <input id="le" type="email" autocomplete="username"
+          placeholder="ten@gmail.com">
+      </label>
+
+      <label class="fl">
+        Mật khẩu<br>
+        <span class="pw-wrap">
+          <input id="lp" type="password" autocomplete="current-password">
+          <button class="pw-eye" id="pwEye" type="button"
+            aria-label="Hiện mật khẩu" title="Hiện mật khẩu">🙈</button>
+        </span>
+      </label>
+
+      <label style="display:flex;align-items:center;gap:9px;cursor:pointer">
+        <input id="rememberLogin" type="checkbox"
+          style="width:18px;height:18px;accent-color:var(--red)">
+        Ghi nhớ đăng nhập trên thiết bị này
+      </label>
+
+      <div class="row">
+        <button class="btn" id="lgo">Đăng nhập</button>
+      </div>
+    </div>`;
+
+  $('lgo').onclick = login;
+
+  const eye = $('pwEye');
+  const pwd = $('lp');
+
+  eye.onclick = () => {
+    const show = pwd.type === 'password';
+    pwd.type = show ? 'text' : 'password';
+    eye.textContent = show ? '🙉' : '🙈';
+    eye.setAttribute('aria-label', show ? 'Ẩn mật khẩu' : 'Hiện mật khẩu');
+    eye.title = show ? 'Ẩn mật khẩu' : 'Hiện mật khẩu';
+  };
+
+  ['le', 'lp'].forEach(id => {
+    $(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') login();
+    });
+  });
+}
+
+function login() {
+  const email = $('le').value.trim().toLowerCase();
+  const pass = $('lp').value;
+
+  const ADMIN_GMAIL = 'ntbskillclub2013@gmail.com';
+  const ADMIN_PASSWORD = 'Ntb05102013@';
+
+  if (!email || !pass) {
+    toast('Hãy nhập Gmail và mật khẩu.', 1);
+    return;
+  }
+
+  if (email === ADMIN_GMAIL) {
+    if (pass !== ADMIN_PASSWORD) {
+      toast('Mật khẩu chưa đúng.', 1);
+      return;
+    }
+    ME = { role: 'admin', id: 'admin' };
+  } else {
+    const m = S.members.find(
+      x => (x.email || '').trim().toLowerCase() === email
+    );
+
+    if (!m) {
+      toast('Không tìm thấy tài khoản Gmail này.', 1);
+      return;
+    }
+    if (m.pass !== pass) {
+      toast('Mật khẩu chưa đúng.', 1);
+      return;
+    }
+    if (m.status !== 'active') {
+      toast('Tài khoản đang không hoạt động. Hãy liên hệ quản trị viên.', 1);
+      return;
+    }
+
+    ME = { role: 'member', id: m.id };
+  }
+
+  try {
+    sessionStorage.setItem('ntb-me', JSON.stringify(ME));
+
+    if ($('rememberLogin').checked) {
+      localStorage.setItem('ntb-remember-session', JSON.stringify(ME));
+    } else {
+      localStorage.removeItem('ntb-remember-session');
+    }
+  } catch (e) {}
+
+  V = { view: isAd() ? 'dash' : 'me', q: '', fc: '', fs: '', page: 1 };
+  render();
+  toast('Đăng nhập thành công.');
+}
+
+function logout() {
+  stopCam();
+  ME = null;
+
+  try {
+    sessionStorage.removeItem('ntb-me');
+    localStorage.removeItem('ntb-remember-session');
+  } catch (e) {}
+
+  V = { view: 'dash', q: '', fc: '', fs: '', page: 1 };
+  setSb(false);
+  render();
+  toast('Đã đăng xuất.');
+}
+
+/* ===== 8. BÁO CÁO — CHỤP ẢNH: trạng thái camera, GPS ===== */
+let CAM={src:null,time:null,gps:'',tpl:'',mem:'',act:'',stream:null};
+function stopCam(){cancelAnimationFrame(CAM.raf);if(CAM.stream){CAM.stream.getTracks().forEach(t=>t.stop());CAM.stream=null}const v=$('vid');if(v)v.srcObject=null;const b=$('bShot');if(b)b.style.display='none'}
+function getGps(){if(!navigator.geolocation){CAM.gps='Thiết bị không hỗ trợ GPS';updG();return}navigator.geolocation.getCurrentPosition(p=>{CAM.gps=p.coords.latitude.toFixed(5)+', '+p.coords.longitude.toFixed(5);updG()},()=>{CAM.gps='Không lấy được vị trí';updG();toast('Hãy cho phép truy cập vị trí trong trình duyệt.',1)},{enableHighAccuracy:true,timeout:8000})}
+function updG(){const g=$('gpsT');if(g)g.textContent=CAM.gps;draw()}
+function setSrc(im){CAM.src=im;CAM.time=new Date();draw()}
+function bindCam(){const cm=$('cm');if(cm)cm.onchange=()=>{CAM.mem=cm.value;rt();if(!CAM.stream)draw()};$('ct').onchange=e=>{CAM.tpl=e.target.value;if(!CAM.stream)draw()};$('ca').onchange=e=>{CAM.act=e.target.value;rt();if(!CAM.stream)draw()};
+ $('ck').onchange=e=>{CAM.task=e.target.value};$('bGps').onclick=getGps;if(!CAM.gps)getGps();
+ $('bOpen').onclick=async()=>{stopCam();CAM.src=null;$('saveRow').style.display='none';try{CAM.stream=await getCam();const v=$('vid');v.srcObject=CAM.stream;await v.play();$('bShot').style.display='inline-block';$('cv').style.display='block';loop()}catch(e){stopCam();toast(camErr(e),1)}};
+ $('bShot').onclick=()=>{const v=$('vid');if(!v.videoWidth)return;const c=document.createElement('canvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);CAM.time=new Date();stopCam();CAM.src=c;draw();$('saveRow').style.display='flex';$('bOpen').textContent='📷 Chụp lại'};
+ $('bSave').onclick=savePhoto;if(CAM.src)draw()}
+async function getCam(){if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw {name:'NoApi'};try{return await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'},audio:false})}catch(e){if(e.name==='NotAllowedError'||e.name==='SecurityError')throw e;return await navigator.mediaDevices.getUserMedia({video:true,audio:false})}}
+function camErr(e){const n=e&&e.name;if(n==='NoApi')return 'Trình duyệt này không hỗ trợ camera hoặc trang không chạy trên HTTPS.';if(n==='NotAllowedError'||n==='SecurityError')return 'Camera đang bị chặn. Hãy mở trang ở tab riêng (khung xem trước trong chat thường chặn camera), bấm biểu tượng ổ khóa trên thanh địa chỉ và chọn Cho phép camera.';if(n==='NotFoundError'||n==='OverconstrainedError')return 'Không tìm thấy camera trên thiết bị này.';if(n==='NotReadableError')return 'Camera đang được ứng dụng khác sử dụng. Hãy đóng ứng dụng đó rồi thử lại.';return 'Không mở được camera ('+(n||'lỗi không rõ')+').'}
+function loop(){if(!CAM.stream)return;draw();CAM.raf=requestAnimationFrame(loop)}
+function draw(){const cv=$('cv');if(!cv)return;const v=$('vid'),live=!!CAM.stream&&v&&v.videoWidth>0,im=live?v:CAM.src;if(!im)return;paintTpl(cv,im,find('templates',CAM.tpl)||S.templates[0],{time:live?new Date():(CAM.time||new Date()),mem:find('members',CAM.mem),act:find('activities',CAM.act),gps:CAM.gps})}
+/* ===== 8. VẼ MẪU lên ảnh: dùng chung cho xem trước mẫu, camera trực tiếp và ảnh lưu ===== */
+function paintTpl(cv,im,t,o){if(!t)return;const sw=im.videoWidth||im.naturalWidth||im.width,sh=im.videoHeight||im.naturalHeight||im.height;if(!sw)return;const k=Math.min(1,900/sw),W=Math.round(sw*k),H=Math.round(sh*k);cv.width=W;cv.height=H;const x=cv.getContext('2d');x.drawImage(im,0,0,W,H);
+ const m=o.mem,a=o.act,d=o.time,L=[];
+ if(t.club)L.push(['🔥 '+S.settings.name,.7,1]);if(t.time)L.push([d.toLocaleTimeString('vi-VN'),1.6,1]);
+ if(t.date)L.push([d.toLocaleDateString('vi-VN',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'}),.8,0]);
+ if(t.gps)L.push(['📍 '+(/^-?\d/.test(o.gps)?o.gps:'Chưa có vị trí GPS'),.8,0]);
+ if(t.member&&m)L.push(['👤 '+m.name+' • '+m.id,.8,0]);if(t.activity&&a)L.push(['📌 '+a.title,.8,0]);if(t.note)L.push([t.note,.8,0]);
+ const fs=W*.032*(+t.size||1),pad=fs*.6,mw=W*.8,F=(b,f)=>(b?'700 ':'500 ')+f+'px "Be Vietnam Pro",system-ui,sans-serif',rows=[];x.textBaseline='top';
+ L.forEach(([q,sc,b])=>{const f=fs*sc;x.font=F(b,f);let line='';q.split(' ').forEach(w=>{const tt=line?line+' '+w:w;if(x.measureText(tt).width>mw&&line){rows.push([line,f,b]);line=w}else line=tt});rows.push([line,f,b])});
+ if(rows.length){const bw=Math.min(mw,Math.max(...rows.map(r=>{x.font=F(r[2],r[1]);return x.measureText(r[0]).width})))+pad*2,bh=rows.reduce((q,r)=>q+r[1]*1.25,0)+pad*2,bx=t.pos.includes('r')?W-bw-pad:pad,by=t.pos.includes('t')?pad:H-bh-pad;
+  const al=Math.min(1,Math.max(.1,+t.op||.35)),B=({red:'214,43,31',dark:'0,0,0',cream:'255,244,224'})[t.color]||'214,43,31',lt=t.color==='cream';
+  x.fillStyle='rgba('+B+','+al+')';x.beginPath();if(x.roundRect)x.roundRect(bx,by,bw,bh,fs*.5);else x.rect(bx,by,bw,bh);x.fill();
+  x.fillStyle=lt?'#3a1a12':'#fff';x.shadowColor=lt?'rgba(255,255,255,.9)':'rgba(0,0,0,.7)';x.shadowBlur=fs*.2;x.shadowOffsetY=fs*.04;
+  let y=by+pad;rows.forEach(r=>{x.font=F(r[2],r[1]);x.fillText(r[0],bx+pad,y);y+=r[1]*1.25});x.shadowColor='transparent';x.shadowBlur=0;x.shadowOffsetY=0}}
+function sampleImg(){const c=document.createElement('canvas');c.width=640;c.height=400;const x=c.getContext('2d'),g=x.createLinearGradient(0,0,640,400);g.addColorStop(0,'#6f9bbd');g.addColorStop(1,'#d8c6a0');x.fillStyle=g;x.fillRect(0,0,640,400);x.fillStyle='rgba(255,255,255,.5)';x.font='700 26px system-ui,sans-serif';x.textBaseline='top';x.fillText('Ảnh minh họa',20,20);return c}
+function paintPrev(){const sm=sampleImg();document.querySelectorAll('[data-prev]').forEach(cv=>paintTpl(cv,sm,find('templates',cv.dataset.prev),{time:new Date(),mem:{name:'Nguyễn Văn A',id:'TV001'},act:{title:'Buổi sinh hoạt CLB'},gps:'10.77690, 106.70090'}))}
+/* ===== 8. LƯU BÁO CÁO (+ tự điểm danh nếu chọn hoạt động) ===== */
+// Lưu ảnh báo cáo đã chụp; có thể tự động ghi điểm danh và hoàn thành nhiệm vụ.
+function savePhoto(){const cv=$('cv'),m=find('members',CAM.mem);if(!CAM.src||!m){toast('Hãy chụp ảnh trước khi lưu.',1);return}
+ const p={id:uid(),mem:m.id,act:CAM.act,tpl:CAM.tpl,ts:Date.now(),gps:CAM.gps,data:cv.toDataURL('image/jpeg',.6)};S.photos.unshift(p);if(!save()){S.photos.shift();return}
+ const a=find('activities',CAM.act),auto=a&&$('auto').checked;if(auto&&!a.chk.some(r=>r.who===m.id)){a.chk.push({id:uid(),who:m.id,in:new Date().toTimeString().slice(0,5),out:''});save()}const tk=a&&CAM.task&&a.tasks.find(r=>r.id===CAM.task);if(tk){tk.status='done';tk.proofPhoto=p.id;save()}
+ toast(auto?'Đã lưu báo cáo và điểm danh.':'Đã lưu báo cáo.');CAM.src=null;render()}
+/* ===== 2. MENU DỌC: mở/đóng, thu/mở nhóm con, thoát đăng nhập ===== */
+function setSb(o){document.body.classList.toggle('sb',o);try{localStorage.setItem('ntb-sb',o?'1':'0')}catch(e){}}
+document.addEventListener('click',e=>{const gb=e.target.closest('[data-grp]');if(gb){OG[gb.dataset.grp]=!OG[gb.dataset.grp];render(true);return}if(e.target.closest('[data-sb]'))setSb(!document.body.classList.contains('sb'));else if(e.target.closest('nav [data-go]')&&innerWidth<900)setSb(false);const u=e.target.closest('[data-use]');if(u){CAM.tpl=u.dataset.use;CAM.src=null;V.view='cam';render()}});
+try{const v=localStorage.getItem('ntb-sb');document.body.classList.toggle('sb',v===null?innerWidth>=900:v==='1')}catch(e){document.body.classList.toggle('sb',innerWidth>=900)}
+/* ===== 12. XUẤT FILE THÀNH VIÊN (CSV): nút "⬇ Xuất file" ở trang Thành viên (người đang hoạt động) và trang Blacklist (kèm ngày dừng) ===== */
+// Xuất danh sách thành viên đang hoạt động hoặc Blacklist ra file CSV.
+async function exportMembers(kind){
+ const L=S.members.filter(m=>kind==='bl'?m.status==='inactive':m.status==='active');
+ if(!L.length){toast('Không có thành viên nào để xuất.',1);return}
+ const q=v=>{v=String(v==null?'':v);if(/^[=@\t\r]|^[+-][^0-9]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'};
+ const ph=v=>v&&/^[0-9 +().-]+$/.test(v)?'="'+v+'"':q(v);
+ const head=['Mã thành viên','Họ và tên','Ngày sinh','Email','Số điện thoại','Lớp / Khoa','Ban / Nhóm','Ngày vào CLB','Trạng thái','Ngày dừng hoạt động'];
+ const rows=[head.map(q).join(','),...L.map(m=>[q(m.id),q(m.name),q(fd(m.dob)),q(m.email),ph(m.phone),q(m.cls),q(cName(m.committee)),q(fd(m.join)),q(m.status==='active'?'Đang hoạt động':'Dừng hoạt động'),q(fd(m.stopDate))].join(','))];
+ const file=(kind==='bl'?'blacklist-':'thanh-vien-')+today()+'.csv',data='\ufeff'+rows.join('\r\n');
+ let dl=null;try{dl=window.claude&&await window.claude.use('downloads')}catch(e){}
+ if(!dl){toast('Chưa tải file được ở chế độ xem này. Hãy mở trang đã đăng trong claude.ai rồi thử lại.',1);return}
+ try{await dl.save({filename:file,data});toast('Đã xuất '+L.length+' thành viên ('+file+').')}
+ catch(e){toast(e&&e.code==='declined'?'Bạn đã hủy việc lưu file.':'Không xuất được file'+(e&&e.message?': '+e.message:'.'),1)}}
+document.addEventListener('click',e=>{const x=e.target.closest('[data-exp]');if(x)exportMembers(x.dataset.exp)});
+/* ===== 7. HOẠT ĐỘNG (HỒ SƠ CHI TIẾT): trạng thái quy trình, các tab, bảng dòng dùng chung (lst), đăng ký, điểm danh, báo cáo duyệt, sao chép ===== */
+const cat=a=>a.status==='live'?'ongoing':a.status==='cancel'?'cancel':['ended','awaitrep','done'].includes(a.status)?'done':'upcoming';
+const wfL=v=>(OPT.wf().find(o=>o[0]===v)||[0,v])[1];
+const capActs=()=>S.activities.filter(a=>!['cancel','idea'].includes(a.status)&&(isMgr()||inv(a)));
+function taskOpts(){const a=find('activities',CAM.act);return a?a.tasks.filter(r=>r.proof==='yes'&&r.who===CAM.mem&&r.status!=='done').map(r=>`<option value="${r.id}" ${CAM.task===r.id?'selected':''}>${E(r.name)}</option>`).join(''):''}
+function rt(){CAM.task='';const k=$('ck');if(k)k.innerHTML='<option value="">— Không —</option>'+taskOpts()}
+Object.assign(OPT,{mem:()=>[['','—'],...S.members.map(m=>[m.id,m.name])],pri:()=>[['low','Thấp'],['mid','Vừa'],['high','Cao']],tstat:()=>[['todo','Chưa làm'],['doing','Đang làm'],['done','✅ Hoàn thành']],lvl:()=>[['low','Nhẹ'],['mid','Trung bình'],['high','Nghiêm trọng']],mkind:()=>[['photo','📸 Ảnh'],['video','🎥 Video'],['poster','🎨 Poster'],['post','📱 Bài đăng']],yn:()=>[['no','Không'],['yes','Có']],srole:()=>[['BTC','BTC'],['lead','Phụ trách mảng'],['member','Thành viên tham gia'],['guest','Khách mời']],regw:()=>[['all','Tất cả thành viên CLB'],['ban','Chỉ ban phụ trách']],rst:()=>[['ok','Đã duyệt'],['wait','Chờ duyệt'],['no','Từ chối']],pos:()=>['Thành viên','Trưởng ban','Phó chủ nhiệm','Chủ nhiệm'].map(x=>[x,x]),
+ atype:()=>['🏫 Sinh hoạt CLB','🎪 Sự kiện','🧑‍🏫 Tập huấn','🤝 Hoạt động cộng đồng','🎤 Văn nghệ','🏃 Hoạt động phong trào','📋 Họp','🔍 Thanh tra','📦 Kiểm kê','🧹 Vệ sinh','🧩 Hoạt động nội bộ'].map(x=>[x,x]),
+ wf:()=>[['idea','💡 Ý tưởng'],['plan','📝 Đang lập kế hoạch'],['pending','🟡 Chờ duyệt'],['approved','🟢 Đã duyệt'],['prep','🔵 Đang chuẩn bị'],['live','🔴 Đang diễn ra'],['ended','⚪ Đã kết thúc'],['awaitrep','📋 Chờ báo cáo'],['done','✅ Hoàn tất'],['cancel','⛔ Đã hủy']]});
+function norm(a){a.status=({upcoming:'approved',ongoing:'live'})[a.status]||a.status||'plan';
+ if(!a.chk)a.chk=(a.att||[]).map(u=>{const m=S.members.find(x=>x.uid===u);return m?{id:uid(),who:m.id,in:a.time||'',out:''}:null}).filter(Boolean);
+ a.att=a.att||[];['staff','tasks','tl','regs','sup','bud','inc','med'].forEach(k=>a[k]=a[k]||[]);
+ a.reg=a.reg||{on:'no',max:'0',deadline:'',who:'all',approve:'no'};a.rep=a.rep||{stage:'draft',actual:'',count:'',result:'',achv:'',issues:'',cost:'',advice:''};
+ ['type','end','org','lead','purpose','expected'].forEach(k=>{if(a[k]==null)a[k]=''});if(!a.est)a.est='0'}
+function seedAct(a,m){const A=a[0];A.status='prep';A.type='🧑‍🏫 Tập huấn';A.end='16:30';A.org='Ban Sự kiện';A.lead=m[1].id;A.expected='40';A.purpose='Giúp thành viên tự tin nói trước đám đông.';A.est='1500000';
+ A.staff=[{id:uid(),who:m[1].id,role:'BTC',note:''},{id:uid(),who:m[6].id,role:'lead',note:'Hậu cần'}];
+ A.tasks=[{id:uid(),name:'Chuẩn bị 20 ghế',who:m[6].id,due:dd(4),pri:'high',status:'doing',proof:'yes'},{id:uid(),name:'Thiết kế poster',who:m[7].id,due:dd(2),pri:'mid',status:'done',proof:'no'}];
+ A.tl=[{id:uid(),time:'13:30',text:'BTC tập trung'},{id:uid(),time:'14:00',text:'Khai mạc'},{id:uid(),time:'16:00',text:'Tổng kết'}];
+ A.sup=[{id:uid(),name:'Micro',qty:'2',ready:1,got:0,back:0}];A.bud=[{id:uid(),name:'Nước uống',amt:'300000'}];
+ a[1].status='plan';a[1].staff=[{id:uid(),who:m[7].id,role:'lead',note:'Chụp ảnh'}];a[2].status='done';a[2].type='🏫 Sinh hoạt CLB'}
+const SADD={staff:['who','Thành viên *','m'],tasks:['name','Tên công việc *'],tl:['text','Nội dung mốc thời gian *'],sup:['name','Tên vật tư *'],bud:['name','Nội dung chi *'],inc:['text','Mô tả sự cố *'],med:['name','Tên tệp / bài đăng *'],regs:['who','Thành viên *','m'],chk:['who','Thành viên *','m']};
+const SDEF={staff:{who:'',role:'member',note:''},tasks:{name:'',who:'',due:'',pri:'mid',status:'todo',proof:'no'},tl:{time:'08:00',text:''},sup:{name:'',qty:'1',ready:0,got:0,back:0},bud:{name:'',amt:'0'},inc:{time:new Date().toTimeString().slice(0,5),text:'',who:'',lvl:'mid',fixer:'',res:''},med:{kind:'photo',name:'',url:''},regs:{who:'',st:'ok'},chk:{who:'',in:'',out:''}};
+const canAdd=(a,k)=>isMgr()||(inv(a)&&['inc','med'].includes(k));
+function lst(a,k,cols,addL){const e='sub:'+a.id+':'+k,rows=k==='tl'?[...a.tl].sort((x,y)=>x.time.localeCompare(y.time)):a[k];
+ return `<div style="overflow-x:auto"><table class="tb"><tr>${cols.map(c=>`<th>${c[0]}</th>`).join('')}<th></th></tr>${rows.map(r=>`<tr>${cols.map(c=>`<td>${c[2]==='chk'?`<input type="checkbox" data-sc="${a.id}:${k}:${r.id}:${c[1]}" ${r[c[1]]?'checked':''} ${can(e,r.id,c[1])?'':'disabled'} aria-label="${c[0]}">`:ed(e,r.id,c[1],c[2]||'text',r[c[1]],c[0])}</td>`).join('')}<td>${isMgr()?`<button class="del" style="position:static;opacity:1" data-sdel="${a.id}:${k}:${r.id}" aria-label="Xóa dòng">🗑</button>`:''}</td></tr>`).join('')||`<tr><td colspan="${cols.length+1}" class="empty-s">Chưa có dòng nào.</td></tr>`}</table></div>${canAdd(a,k)?`<div class="row"><button class="btn alt" data-sadd="${a.id}:${k}">＋ ${addL}</button></div>`:''}`}
+const fl=(a,e,id,L,src)=>L.map(([l,f,t])=>`<div class="f"><i>${l}</i>${ed(e,id,f,t,(src||a)[f],l)}</div>`).join('');
+const TABS=[['ov','📌 Tổng quan'],['staff','👥 Nhân sự'],['tasks','📋 Công việc'],['tl','⏱️ Timeline'],['reg','📱 Đăng ký'],['att','📲 Điểm danh'],['sup','📦 Vật tư'],['bud','💰 Kinh phí'],['inc','⚠️ Sự cố'],['med','📸 Media'],['rep','📝 Báo cáo']];
+const TB={
+ ov:a=>{const t=a.tasks.filter(r=>r.status==='done').length;return `<p><small>${OPT.wf().slice(0,9).map(o=>o[0]===a.status?`<b>${o[1]}</b>`:o[1]).join(' → ')}</small></p>`+fl(a,'activities',a.id,[['Tên hoạt động','title','text'],['Loại','type','sel:atype'],['Ngày','date','date'],['Giờ bắt đầu','time','time'],['Giờ kết thúc','end','time'],['Địa điểm','location','text'],['Đơn vị tổ chức','org','text'],['Người phụ trách','lead','sel:mem'],['Ban phụ trách','committee','sel:committee'],['Số lượng dự kiến','expected','text'],['Mục đích','purpose','area'],['Nội dung','description','area'],['Trạng thái','status','sel:wf']])+`<p>Công việc hoàn thành: <b>${t}/${a.tasks.length}</b></p>`},
+ staff:a=>lst(a,'staff',[['Thành viên','who','sel:mem'],['Vai trò','role','sel:srole'],['Ghi chú','note']],'Thêm nhân sự'),
+ tasks:a=>lst(a,'tasks',[['Công việc','name'],['Người phụ trách','who','sel:mem'],['Deadline','due','date'],['Ưu tiên','pri','sel:pri'],['Trạng thái','status','sel:tstat'],['Cần minh chứng','proof','sel:yn']],'Giao nhiệm vụ')+'<p><small>Nhiệm vụ cần minh chứng: người phụ trách chụp ở Báo cáo → Chụp ảnh và chọn nhiệm vụ đó; ảnh lưu xong, nhiệm vụ tự chuyển Hoàn thành.</small></p>',
+ tl:a=>lst(a,'tl',[['Giờ','time','time'],['Nội dung','text']],'Thêm mốc thời gian'),
+ reg:a=>{const e='sub:'+a.id+':reg',g=a.regs.filter(r=>r.st!=='no').length;return fl(a,e,'x',[['Cho phép đăng ký','on','sel:yn'],['Số lượng tối đa (0 = không giới hạn)','max','text'],['Hạn đăng ký','deadline','date'],['Ai được đăng ký','who','sel:regw'],['Cần duyệt','approve','sel:yn']],a.reg)+`<p>Đã đăng ký: <b>${g}${+a.reg.max?'/'+a.reg.max:''}</b></p>`+(ME.role==='member'?`<div class="row"><button class="btn" data-reg="${a.id}">ĐĂNG KÝ THAM GIA</button></div>`:'')+lst(a,'regs',[['Thành viên','who','sel:mem'],['Trạng thái','st','sel:rst']],'Thêm người đăng ký')},
+ att:a=>{const late=a.chk.filter(r=>r.in&&a.time&&r.in>a.time).length,early=a.chk.filter(r=>r.out&&a.end&&r.out<a.end).length;return `<p>👥 <b>${a.chk.length}${+a.expected?'/'+a.expected:''}</b> có mặt • ⏰ <b>${late}</b> đi trễ • 🏃 <b>${early}</b> về sớm</p><p><small>Mã QR check-in chưa có trong bản demo: thành viên bấm nút bên dưới, hoặc được check-in tự động khi chụp báo cáo.</small></p>`+(ME.role==='member'?`<div class="row"><button class="btn" data-chk="${a.id}:in">Check-in bây giờ</button><button class="btn alt" data-chk="${a.id}:out">Check-out</button></div>`:'')+lst(a,'chk',[['Thành viên','who','sel:mem'],['Check-in','in','time'],['Check-out','out','time']],'Thêm điểm danh')},
+ sup:a=>lst(a,'sup',[['Vật tư','name'],['Số lượng','qty'],['Đã chuẩn bị','ready','chk'],['Đã nhận','got','chk'],['Đã trả','back','chk']],'Thêm vật tư'),
+ bud:a=>{const sp=a.bud.reduce((n,r)=>n+(+r.amt||0),0),es=+a.est||0,m=n=>n.toLocaleString('vi-VN')+'đ';return `<div class="f"><i>Dự toán (đ)</i>${ed('activities',a.id,'est','text',a.est,'dự toán')}</div><p>Đã chi: <b>${m(sp)}</b> • Còn lại: <b style="color:${es-sp<0?'#b3261e':'inherit'}">${m(es-sp)}</b></p>`+lst(a,'bud',[['Nội dung','name'],['Số tiền (đ)','amt']],'Thêm khoản chi')},
+ inc:a=>lst(a,'inc',[['Giờ','time','time'],['Sự cố','text'],['Người ghi nhận','who','sel:mem'],['Mức độ','lvl','sel:lvl'],['Người xử lý','fixer'],['Kết quả','res']],'⚠️ Ghi nhận sự cố'),
+ med:a=>lst(a,'med',[['Loại','kind','sel:mkind'],['Tên','name'],['Liên kết (Facebook / TikTok / Drive / Canva)','url']],'Thêm media')+`<h3>Báo cáo ảnh đã chụp</h3><div class="row">${S.photos.filter(p=>p.act===a.id).map(p=>`<img src="${p.data}" alt="Báo cáo" data-zoom="${p.id}" style="width:90px;height:90px;object-fit:cover;border-radius:10px;cursor:zoom-in">`).join('')||'<small>Chưa có ảnh báo cáo cho hoạt động này.</small>'}</div>`,
+ rep:a=>{const r=a.rep,stg={draft:'Đang soạn',tb:'Chờ Trưởng ban duyệt',bcn:'Chờ BCN duyệt',ok:'✅ Đã duyệt'},b=(t,l,c)=>`<button class="btn ${c||''}" data-rstage="${a.id}:${t}">${l}</button>`;
+  return `<p><b>Trạng thái báo cáo:</b> ${stg[r.stage]} <small>(Người lập → Trưởng ban → BCN duyệt)</small></p>`+fl(a,'sub:'+a.id+':rep','x',[['Hoạt động thực tế','actual','area'],['Số người tham gia','count','text'],['Kết quả','result','area'],['Thành tích','achv','area'],['Vấn đề phát sinh','issues','area'],['Kinh phí thực tế','cost','text'],['Kiến nghị','advice','area']],r)+`<div class="row">${r.stage==='draft'&&(inv(a)||isMgr())?b('tb','Gửi Trưởng ban duyệt'):''}${isMgr()&&r.stage==='tb'?b('bcn','Trưởng ban duyệt')+b('draft','Trả về soạn lại','ghost'):''}${isMgr()&&r.stage==='bcn'?b('ok','BCN duyệt – hoàn tất')+b('draft','Trả về soạn lại','ghost'):''}</div><p><small>Hình ảnh: tab Media. File đính kèm: dán liên kết Drive ở tab Media.</small></p>`}};
+async function sAdd(aid,k){const a=find('activities',aid),d=SADD[k];if(!a||!d)return;
+ const h=d[2]==='m'?`<label class="fl">${d[1]}<br><select name="name" style="width:100%"><option value="">— Chọn —</option>${S.members.filter(m=>m.status==='active').map(m=>`<option value="${E(m.id)}">${E(m.name)} (${E(m.id)})</option>`).join('')}</select></label>`:fld('name',d[1]);
+ const o=await formDlg('Thêm: '+d[1].replace(' *',''),h,'Thêm');if(!o)return;
+ const row=Object.assign({id:uid()},JSON.parse(JSON.stringify(SDEF[k])));row[d[0]]=o.name;if(k==='inc'){row.who=ME.role==='member'?ME.id:''}a[k].push(row);save();toast('Đã thêm.');render(true)}
+async function sDel(aid,k,rid){if(!isMgr())return;const r=await ask('Xóa dòng này?','Dòng sẽ bị xóa khỏi hồ sơ hoạt động.',[CANCEL,{l:'Xóa',v:'del',c:'danger'}]);if(r.v!=='del')return;const a=find('activities',aid);a[k]=a[k].filter(x=>x.id!==rid);save();render(true)}
+function copyAct(id){if(!isMgr())return;const o=JSON.parse(JSON.stringify(find('activities',id))),nid=()=>uid();o.id=uid();o.title+=' (bản sao)';o.status='plan';o.chk=[];o.att=[];o.regs=[];o.inc=[];o.med=[];o.by=isAd()?'admin':ME.id;o.rep={stage:'draft',actual:'',count:'',result:'',achv:'',issues:'',cost:'',advice:''};
+ ['staff','tasks','tl','sup','bud'].forEach(k=>o[k].forEach(r=>{r.id=nid();if(k==='tasks'){r.status='todo';delete r.proofPhoto}if(k==='sup'){r.ready=r.got=r.back=0}}));S.activities.unshift(o);save();toast('Đã sao chép — hãy chỉnh ngày và người phụ trách.');V={view:'actd',aid:o.id,tab:'ov'};render()}
+function rStage(aid,to){const a=find('activities',aid);if(!a)return;if(to!=='tb'&&!isMgr())return;a.rep.stage=to;if(to==='tb'&&['approved','prep','live','ended'].includes(a.status))a.status='awaitrep';if(to==='ok')a.status='done';save();toast('Đã cập nhật báo cáo.');render(true)}
+function regMe(aid){const a=find('activities',aid),m=find('members',ME.id);let er='';if(a.reg.on!=='yes')er='Hoạt động này chưa mở đăng ký.';else if(a.reg.deadline&&today()>a.reg.deadline)er='Đã hết hạn đăng ký.';else if(+a.reg.max&&a.regs.filter(r=>r.st!=='no').length>=+a.reg.max)er='Đã đủ số lượng đăng ký.';else if(a.regs.some(r=>r.who===ME.id))er='Bạn đã đăng ký rồi.';else if(a.reg.who==='ban'&&a.committee&&m.committee!==a.committee)er='Hoạt động này chỉ dành cho ban phụ trách.';
+ if(er){toast(er,1);return}a.regs.push({id:uid(),who:ME.id,st:a.reg.approve==='yes'?'wait':'ok'});save();toast(a.reg.approve==='yes'?'Đã gửi đăng ký, chờ duyệt.':'Đăng ký thành công.');render(true)}
+function chkMe(aid,k){const a=find('activities',aid),t=new Date().toTimeString().slice(0,5);let r=a.chk.find(x=>x.who===ME.id);if(k==='in'){if(r){toast('Bạn đã check-in lúc '+r.in+'.',1);return}a.chk.push({id:uid(),who:ME.id,in:t,out:''})}else{if(!r){toast('Bạn chưa check-in.',1);return}r.out=t}save();toast(k==='in'?'Đã check-in '+t+'.':'Đã check-out '+t+'.');render(true)}
+document.addEventListener('click',e=>{let x;const g=q=>(x=e.target.closest(q));
+ if(g('[data-open]')){V.view='actd';V.aid=x.dataset.open;V.tab='ov';render();scrollTo(0,0)}
+ else if(g('[data-tab]')){V.tab=x.dataset.tab;render(true)}
+ else if(g('[data-af]')){V.af=x.dataset.af;render(true)}
+ else if(g('[data-hy]')){V.hy=x.dataset.hy;render(true)}
+ else if(g('[data-sadd]'))sAdd(...x.dataset.sadd.split(':'));
+ else if(g('[data-sdel]'))sDel(...x.dataset.sdel.split(':'));
+ else if(g('[data-copy]'))copyAct(x.dataset.copy);
+ else if(g('[data-rstage]'))rStage(...x.dataset.rstage.split(':'));
+ else if(g('[data-reg]'))regMe(x.dataset.reg);
+ else if(g('[data-chk]'))chkMe(...x.dataset.chk.split(':'))});
+document.addEventListener('change',e=>{const c=e.target.closest('[data-sc]');if(c){const[aid,k,rid,f]=c.dataset.sc.split(':'),en='sub:'+aid+':'+k,r=find(en,rid);if(r&&can(en,rid,f)){r[f]=c.checked?1:0;save()}}});
+render();
+</script>
+</body>
+</html>
